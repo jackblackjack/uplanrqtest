@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "esnext",
 		"module": "esnext",
-		"baseUrl": "./",
 		"moduleResolution": "node",
+		"strict": true,
+		"baseUrl": "./",
 		"paths": {
 			"@/*": [
 				"src/*"
@@ -15,5 +16,12 @@
 			"dom.iterable",
 			"scripthost"
 		]
-	}
+	},
+	"include": [
+		"src",
+		".babelrc" // Добавьте .babelrc в список включаемых файлов
+	],
+	"exclude": [
+		"node_modules"
+	]
 }
