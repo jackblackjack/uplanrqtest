@@ -18,7 +18,6 @@
     "noFallthroughCasesInSwitch": false
   },
   "include": [
-    "./src/**/*.js",
     "./src/**/*.ts",
   ],
   "exclude": [

@@ -28,14 +28,14 @@
             <span v-if="showHint">Пример корректного JSON:</span>
           </div>
           <textarea rows="9" cols="40">
-          {
-            "id": "id",
-            "data": {
-              "prop1": "prop1",
-              "prop2": "prop2"
-            }
-          }
-          </textarea>
+              {
+                "id": "id",
+                "data": {
+                  "prop1": "prop1",
+                  "prop2": "prop2"
+                }
+              }
+            </textarea>
         </div>
       </div>
     </div>
@@ -71,9 +71,9 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import axios from 'axios';
-import { useUserStore } from '../store/user-store'
+import { useUserStore } from '../store/user-store';
 
 export default {
   data() {
@@ -82,7 +82,7 @@ export default {
       response: null,
       isSending: false,
       showHint: false,
-      error: null,
+      error: '',
       isSeeking: false,
       found: null,
       searchTarget: '',
@@ -91,7 +91,7 @@ export default {
   methods: {
     async sendData() {
       this.showHint = false;
-      this.error = null;
+      this.error = '';
 
       try {
         const jsonData = JSON.parse(this.jsonInput);
@@ -100,7 +100,6 @@ export default {
 
         this.isSending = true;
         const response = await axios.post('/plan', jsonData);
-        console.log('RESPONSE', response);
 
         if (response.status !== 201) {
           this.error = `Ошибка сервера. Код статуса: ${response.status}`;
@@ -112,7 +111,7 @@ export default {
           this.showHint = true;
           this.error = 'Пожалуйста, укажите корректный JSON код';
         } else {
-          this.error = error.response?.data.detail ?? error
+          this.error = (error as any).response?.data.detail ?? error
         }
       }
       finally {
@@ -120,13 +119,13 @@ export default {
       }
     },
     async seekData() {
-      this.error = null;
+      this.error = '';
       this.isSeeking = true;
       try {
         const response = await axios.get(`/plan/${this.searchTarget}`);
         this.found = response.data;
       } catch (error) {
-        this.error = error.response?.data.detail ?? error
+        this.error = (error as any).response?.data.detail ?? error
       }
       finally {
         this.isSeeking = false;

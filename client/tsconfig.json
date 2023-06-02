@@ -1,27 +1,40 @@
 {
 	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "node",
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"module": "ES2020",
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"declaration": true,
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "preserve",
 		"strict": true,
-		"baseUrl": "./",
-		"paths": {
-			"@/*": [
-				"src/*"
-			]
-		},
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"importHelpers": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"strictFunctionTypes": true,
+		"outDir": "dist",
+		"esModuleInterop": true,
 		"lib": [
-			"esnext",
-			"dom",
-			"dom.iterable",
-			"scripthost"
+			"ES2020",
+			"DOM",
+			"DOM.Iterable"
 		]
 	},
 	"include": [
+		".babelrc",
 		"src",
-		".babelrc" // Добавьте .babelrc в список включаемых файлов
+		"vite.config.ts"
 	],
 	"exclude": [
+		"dist",
 		"node_modules"
 	]
 }

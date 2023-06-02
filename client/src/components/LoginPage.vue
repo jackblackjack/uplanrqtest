@@ -22,38 +22,38 @@
   </div>
 </template>
 
-<script setup>
-  import { ref } from 'vue';
-  import axios from 'axios'
-  import { useRouter } from 'vue-router';
-  import { useUserStore } from '../store/user-store'
+<script lang="ts" setup>
+import { ref } from 'vue';
+import axios from 'axios'
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../store/user-store'
 
-  const router = useRouter()
-  const userStore = useUserStore()
+const router = useRouter()
+const userStore = useUserStore()
 
-  let error = ref(null)
-  let loading = ref(false)
-  let username = ref(null)
-  let password = ref(null)
+const error = ref(null);
+const loading = ref(false);
+const username = ref(null);
+const password = ref(null);
 
-  const login = async () => {
-    error.value = null
-    loading.value = true
+const login = async () => {
+  error.value = null
+  loading.value = true
 
-    try {
-      let res = await axios.post('auth/login', {
-          username: username.value,
-          password: password.value,
-      })
+  try {
+    const res = await axios.post('auth/login', {
+      username: username.value,
+      password: password.value,
+    })
 
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token
-      userStore.setUserDetails(res.data)
-      router.push('/authenticated')
-      loading.value = false
-    } catch (err) {
-      loading.value = false
-      error.value = err.response?.data.detail
-    }
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token
+    userStore.setUserDetails(res.data)
+    router.push('/authenticated')
+    loading.value = false
+  } catch (err) {
+    loading.value = false
+    error.value = (error as any).response?.data.detail
   }
+}
 </script>
 

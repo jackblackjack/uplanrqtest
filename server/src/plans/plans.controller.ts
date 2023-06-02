@@ -6,7 +6,7 @@ import { PlansService } from './plans.service';
 @UseGuards(AuthGuard('jwt'))
 @Controller('plan')
 export class PlansController {
-  constructor(private plansService: PlansService) { }
+  constructor(private plansService: PlansService) {}
 
   @Post()
   async createOne(@Body() planBody: CreatePlanDTO) {

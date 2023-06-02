@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/authenticated',
       component: AuthenticatedPage,
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (_to, _from, next) => {
         useUserStore().token ? next() : next('/login')
       },
     }

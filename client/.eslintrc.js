@@ -1,20 +1,19 @@
 module.exports = {
-  "parser": "@babel/eslint-parser",
-  parserOptions: {
-    project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-  },
-  extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended"
-  ],
   root: true,
   env: {
     node: true,
-    jest: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 2020,
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
 };

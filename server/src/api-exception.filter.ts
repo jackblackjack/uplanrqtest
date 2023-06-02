@@ -17,7 +17,8 @@ import { EntityNotFoundError, QueryFailedError } from 'typeorm';
 @Catch()
 export class ApiExceptionFilter
   extends BaseExceptionFilter
-  implements ExceptionFilter {
+  implements ExceptionFilter
+{
   private readonly logger = new Logger(ApiExceptionFilter.name);
 
   catch(

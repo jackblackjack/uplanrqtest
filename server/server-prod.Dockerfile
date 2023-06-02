@@ -2,11 +2,11 @@ FROM node:18-alpine AS server-build
 
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./tsconfig.build.json ./
+COPY ./package.json ./yarn.lock ./tsconfig.json ./tsconfig.build.json ./
 RUN --mount=type=tmpfs,target=/tmp \
     yarn install --frozen-lockfile --prefer-offline
 
-COPY . .
+COPY ./src ./src
 RUN echo "Listing files in /app:" && ls -la /app
 ENV NODE_ENV production
 RUN yarn run build:prod

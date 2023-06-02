@@ -2,8 +2,9 @@ import Vue from '@vitejs/plugin-vue'
 import type { ConfigEnv, LogLevel, UserConfig } from 'vite'
 import { loadEnv } from 'vite'
 const root = process.cwd()
+import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default ({ command, mode }: ConfigEnv): UserConfig => {
+export default ({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, root)
 
   return {
@@ -30,6 +31,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     plugins: [
       Vue(),
+      tsconfigPaths()
     ]
   }
 }

@@ -1,20 +1,20 @@
 version: "3"
 
 services:
-#  client:
-#    depends_on:
-#      - server
-#    build:
-#      target: client
-#     context: ./client
-#     dockerfile: client-local-dev.Dockerfile
-#   ports:
-#     - "8080:8080"
-#   volumes:
-#     - ./client/src:/app/src
-#   restart: always
-#   environment:
-#      - NODE_ENV=development
+  client:
+    depends_on:
+      - server
+    links:
+      - server
+    build:
+      target: client
+      context: ./client
+      dockerfile: client-prod.Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+       - NODE_ENV=production
 
   server:
     depends_on:

@@ -5,7 +5,7 @@ export const useUserStore = defineStore('user', {
     token: null,
   }),
   actions: {
-    setUserDetails(data) {
+    setUserDetails(data: { access_token: null }) {
       this.$state.token = data.access_token
     },
 
