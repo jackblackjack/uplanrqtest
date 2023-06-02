@@ -1,0 +1,30 @@
+import {
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Options,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { LocalAuthGuard } from './local-auth.guard';
+import { Request as ExpressRequest } from 'express';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) { }
+
+  //@UseGuards(LocalAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @Options('login')
+  async getOptions(@Request() req: ExpressRequest) {
+    //return this.authService.login(req.user);
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req: ExpressRequest) {
+    return this.authService.login(req.user);
+  }
+}
